@@ -48,7 +48,7 @@ height: 40px;
     position: absolute;
     top: 50%;
     left: 50%;
-    
+    text-align: center;
     transform: translate(-50%, -50%)
 }
 
@@ -56,6 +56,7 @@ height: 40px;
     color: #ffffff;
     text-transform: uppercase;
     backface-visibility: hidden;
+    /* /prevents box from displacing the animation */
 }
 
 .heading-primary-main{
@@ -109,4 +110,86 @@ height: 40px;
         opacity: 1;
         transform: translate(0);
     }
+}
+
+@keyframes moveInBottom{
+    0% {
+        opacity: 0;
+        transform: translatey(30px);
+
+    }
+
+    100%{
+        opacity: 3;
+        transform: translate(0)
+    }
+}
+
+.btn:link, .btn:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    text-decoration: none;
+    padding: 15px 40px;
+    /* top and bottom are the values being specced */
+    display: inline-block;
+    transition: all .2s;
+    position: relative;
+    /* all properties would be able to be animated */
+    /* transition prop is on the intial state, not conditional states */
+
+}
+
+.btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2)
+    /* creates a sublte shadow */
+    /* epsilon axis moves from top to bottom, bottom trending is positive value, up is negative value */
+}
+
+.btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2)
+    /* loses a bit more shadow when clicked versus not which creates the illusion that the button being pressed is further away from viewer */
+}
+
+.btn-white{
+    background-color: white;
+    color: #777
+    /* display property changes from inline to block, useful for giving elements custom padding */
+}
+
+/* pseudo-class selector to style elements under a special condition===> this makes the btn function as a link, i.e. :hover, :visited of  */
+
+.btn::after{
+    content: "";
+    display:inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all .4s;
+
+    /* z-index hides or shows elements that are layered on each other */
+    /* absolute positioning uses a parent element normally or whether element in initial state has relative position (in this case it is the button set to relative)*/
+    /* pseudo-elements require a content property and display property */
+    /* height and width are corresponding to the regular button which acts as like a parent for the pseudo selector */
+}
+
+.btn-white::after {
+    background-color: white;
+}
+
+/* pseudo-elements */
+
+.btn:hover::after{
+    /* psuedo element that only applies when on hover condition */
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0
+}
+
+.btn-animated{
+    animation: moveInBottom .5s ease-out .75s
 }
