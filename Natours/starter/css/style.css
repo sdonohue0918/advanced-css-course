@@ -15,6 +15,12 @@ Dark green: #28b485
 
 }
 
+/* html {
+    font-size: 10px;
+    /* default root font-size is 16px; */
+    /* if you wanted to use rem it is based off this root font size */
+} */
+
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400px;
@@ -182,10 +188,10 @@ height: 40px;
     background-color: white;
 }
 
-/* pseudo-elements */
+/* pseudo-classes above */
 
 .btn:hover::after{
-    /* psuedo element that only applies when on hover condition */
+    /* psuedo element that only appears when on hover condition */
     transform: scaleX(1.4) scaleY(1.6);
     opacity: 0
 }
